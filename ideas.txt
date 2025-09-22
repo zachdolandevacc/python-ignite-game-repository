@@ -1,1 +1,5 @@
-
+# Piko-type Game using pygame
+# 2 to 3 players
+# WASD for P1, arrow keys for P2, UHJK for P3
+# Players can stack on each other
+# 2 levels
