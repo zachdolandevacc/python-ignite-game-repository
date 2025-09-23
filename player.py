@@ -1,9 +1,13 @@
 import pygame
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, pos, size):
+    def __init__(self, pos, size, playernum):
         super().__init__()
-        imgPath = 'Player_1_Blue.png'
+        self.playernum = playernum
+        if(self.playernum == 1):
+            imgPath = 'Player_1_Blue.png'
+        elif(self.playernum == 2):
+            imgPath = 'Player_2_Purple.png'
         self.image = pygame.image.load(imgPath).convert_alpha()
         self.image = pygame.transform.scale(self.image, (size, size))
         self.rect = self.image.get_rect(topleft=pos)
@@ -18,16 +22,41 @@ class Player(pygame.sprite.Sprite):
 
     def getInput(self):
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_UP]:
-            self._jump()
-        if keys[pygame.K_LEFT]:
-            self.direction.x = -1
-            self.facingRight = False
-        elif keys[pygame.K_RIGHT]:
-            self.direction.x = 1
-            self.facingRight = True
-        else:
-            self.direction.x = 0
+        if(self.playernum == 1):
+            if keys[pygame.K_w]:
+                self._jump()
+            if keys[pygame.K_a]:
+                self.direction.x = -1
+                self.facingRight = False
+            elif keys[pygame.K_d]:
+                self.direction.x = 1
+                self.facingRight = True
+            else:
+                self.direction.x = 0
+
+        if(self.playernum == 2):
+            if keys[pygame.K_u]:
+                self._jump()
+            if keys[pygame.K_h]:
+                self.direction.x = -1
+                self.facingRight = False
+            elif keys[pygame.K_k]:
+                self.direction.x = 1
+                self.facingRight = True
+            else:
+                self.direction.x = 0
+
+        if(self.playernum == 3):
+            if keys[pygame.K_UP]:
+                self._jump()
+            if keys[pygame.K_LEFT]:
+                self.direction.x = -1
+                self.facingRight = False
+            elif keys[pygame.K_RIGHT]:
+                self.direction.x = 1
+                self.facingRight = True
+            else:
+                self.direction.x = 0
 
     def _jump(self):
         if self.onGround and self.jumpCooldown == 0:
