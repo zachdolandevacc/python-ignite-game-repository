@@ -8,8 +8,6 @@ class Player(pygame.sprite.Sprite):
             imgPath = 'Player_1_Blue.png'
         elif(self.playernum == 2):
             imgPath = 'Player_2_Purple.png'
-        elif(self.playernum == 3):
-            imgPath = 'Player_3_Green.png'
         self.image = pygame.image.load(imgPath).convert_alpha()
         self.image = pygame.transform.scale(self.image, (size, size))
         self.rect = self.image.get_rect(topleft=pos)
@@ -77,7 +75,7 @@ class Player(pygame.sprite.Sprite):
         self.rect.y += self.direction.y
         if not self.onGround:
             self.direction.y += 1
-        if self.rect.bottom >= 850:
-            self.rect.bottom = 850
+        if self.rect.bottom >= 800:
+            self.rect.bottom = 800
             self.direction.y = 0
             self.onGround = True
