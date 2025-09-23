@@ -25,25 +25,6 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-            
-        # Player and box collision logic
-    if player.rect.colliderect(box.rect):
-        # Push box horizontally if player moves into it
-        if player.direction.x > 0 and player.rect.right > box.rect.left:
-            box.velocity.x = player.speed
-        elif player.direction.x < 0 and player.rect.left < box.rect.right:
-            box.velocity.x = -player.speed
-
-    # --- Collision: Player standing on box ---
-    # Check if player is falling and lands on top of the box
-    if player.rect.colliderect(box.rect):
-        # Calculate previous position (simulate one frame back)
-        prev_bottom = player.rect.bottom - player.direction.y
-        # If player's bottom was above the box and now collides, place player on top
-        if prev_bottom <= box.rect.top and player.direction.y >= 0:
-            player.rect.bottom = box.rect.top
-            player.direction.y = 0
-            player.onGround = True
     
     all_sprites.update()
     gameScreen.fill((0, 0, 0))
