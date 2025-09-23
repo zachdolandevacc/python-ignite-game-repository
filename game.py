@@ -1,19 +1,21 @@
 import pygame
 import sys
-from Player import Player
+from player import Player
 
 pygame.init()
-screenX, screenY = 900, 800
+screenX, screenY = 900, 900
 gameScreen = pygame.display.set_mode((screenX, screenY))
 pygame.display.set_caption("Platformer")
 
 tickSpeed = pygame.time.Clock()
 
 all_sprites = pygame.sprite.Group()
-playerOne = Player(pos=(100, 800), size=64, playernum=1)
-playerTwo = Player(pos=(300, 800), size=64, playernum=2)
+playerOne = Player(pos=(100, 850), size=64, playernum=1)
+playerTwo = Player(pos=(300, 850), size=64, playernum=2)
+playerThree = Player(pos=(500, 850), size=64, playernum=3)
 all_sprites.add(playerOne)
 all_sprites.add(playerTwo)
+all_sprites.add(playerThree)
 running = True
 
 while running:
