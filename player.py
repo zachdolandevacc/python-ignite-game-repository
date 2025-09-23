@@ -78,3 +78,4 @@ class Player(pygame.sprite.Sprite):
 
     def increaseScore(self, amount):
         self.score += amount
+hi
