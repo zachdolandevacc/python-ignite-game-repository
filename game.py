@@ -14,7 +14,13 @@ all_sprites = pygame.sprite.Group()
 playerOne = Player(pos=(100, 850), size=64, playernum=1)
 playerTwo = Player(pos=(300, 850), size=64, playernum=2)
 playerThree = Player(pos=(500, 850), size=64, playernum=3)
-box = PushableBox(pos=(400, 700), size=64)
+
+playerList = []
+playerList.append(playerOne)
+playerList.append(playerTwo)
+playerList.append(playerThree)
+
+box = PushableBox(pos=(400, 700), size=64, listOfPlayers=playerList)
 all_sprites.add(playerOne)
 all_sprites.add(playerTwo)
 all_sprites.add(playerThree)
