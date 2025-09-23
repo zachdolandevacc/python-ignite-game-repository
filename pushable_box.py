@@ -21,3 +21,10 @@ class PushableBox(pygame.sprite.Sprite):
             self.velocity.x = 0
         if abs(self.velocity.y) < 0.1:
             self.velocity.y = 0
+
+        # Always apply gravity
+        self.velocity.y += 1  # Simple gravity
+        # Prevent falling through the floor
+        if self.rect.bottom >= 850:
+            self.rect.bottom = 850
+            self.velocity.y = 0
