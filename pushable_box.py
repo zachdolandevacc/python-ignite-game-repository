@@ -1,13 +1,14 @@
 import pygame
 
 class PushableBox(pygame.sprite.Sprite):
-    def __init__(self, pos, size=64, color=(200, 50, 50)):
+    def __init__(self, pos, size=64, listOfPlayers=[], color=(200, 50, 50)):
         super().__init__()
         self.image = pygame.Surface((size, size))
         self.image.fill(color)
         self.rect = self.image.get_rect(topleft=pos)
         self.velocity = pygame.math.Vector2(0, 0)
         self.friction = 0.8
+        self.listOfPlayers = listOfPlayers
 
     def update(self):
         # Apply velocity
@@ -28,3 +29,17 @@ class PushableBox(pygame.sprite.Sprite):
         if self.rect.bottom >= 850:
             self.rect.bottom = 850
             self.velocity.y = 0
+
+        for player in self.listOfPlayers:
+            if player.rect.colliderect(self.rect):
+                if player.direction.x > 0 and player.rect.right > self.rect.left:
+                    self.velocity.x = player.speed
+                elif player.direction.x < 0 and player.rect.left < self.rect.right:
+                    self.velocity.x = -player.speed
+
+            if player.rect.colliderect(self.rect):
+                prev_bottom = player.rect.bottom - player.direction.y
+                if prev_bottom <= self.rect.top and player.direction.y >= 0:
+                    player.rect.bottom = self.rect.top
+                    player.direction.y = 0
+                    player.onGround = True
