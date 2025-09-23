@@ -1,13 +1,14 @@
-# This is the main game file
 import pygame
 import sys
+import random
+import math
 
+# Initialization
 pygame.init()
-
-screen = pygame.display.set_mode((1000, 600))
-pygame.display.set_caption("My Game")
-
-clock = pygame.time.Clock()
+screenX = 900
+screenY = 900
+gameScreen = pygame.display.set_mode((screenX, screenY))
+tickSpeed = pygame.time.Clock()
 
 while True:
     for event in pygame.event.get():
@@ -15,6 +16,6 @@ while True:
             pygame.quit()
             sys.exit()
 
-    screen.fill((255, 255, 255))
+    gameScreen.fill((0, 0, 0))
     pygame.display.flip()
-    clock.tick(60)
+    tickSpeed.tick(60)
