@@ -34,8 +34,6 @@ while running:
         elif player.direction.x < 0 and player.rect.left < box.rect.right:
             box.velocity.x = -player.speed
 
-    all_sprites.update()
-
     # --- Collision: Player standing on box ---
     # Check if player is falling and lands on top of the box
     if player.rect.colliderect(box.rect):
